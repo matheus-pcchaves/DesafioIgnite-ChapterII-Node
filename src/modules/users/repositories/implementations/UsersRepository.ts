@@ -4,6 +4,7 @@ import { IUsersRepository, ICreateUserDTO } from "../IUsersRepository";
 class UsersRepository implements IUsersRepository {
   private users: User[];
 
+  // eslint-disable-next-line no-use-before-define
   private static INSTANCE: UsersRepository;
 
   private constructor() {
@@ -18,24 +19,37 @@ class UsersRepository implements IUsersRepository {
     return UsersRepository.INSTANCE;
   }
 
-  create({ name, email }: ICreateUserDTO): User {
-    // Complete aqui
+  create({ name, email }: ICreateUserDTO): void {
+    const user = new User()
+
+    Object.assign(user, {
+      name,
+      email 
+    })
+
+    this.users.push(user)
   }
 
   findById(id: string): User | undefined {
-    // Complete aqui
+    const user = this.users.find((user) => user.id === id)
+
+    return user
   }
 
   findByEmail(email: string): User | undefined {
-    // Complete aqui
+    const user = this.users.find((user) => user.email === email)
+
+    return user
   }
 
-  turnAdmin(receivedUser: User): User {
-    // Complete aqui
+  turnAdmin(receivedUser: User): void {
+
+    const user = receivedUser
+    user.admin = true
   }
 
   list(): User[] {
-    // Complete aqui
+    return this.users
   }
 }
 

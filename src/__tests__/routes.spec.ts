@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import request from "supertest";
 import { v4 } from "uuid";
 

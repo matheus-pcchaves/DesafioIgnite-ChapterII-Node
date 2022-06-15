@@ -15,6 +15,10 @@ class ListAllUsersUseCase {
 
       const userId = this.usersRepository.findById(user_id)
 
+      if(!userId.id){
+        throw new Error('User does not exists')
+      }
+
       if(!userId.admin){
         throw new Error('Unauthorized')
       }

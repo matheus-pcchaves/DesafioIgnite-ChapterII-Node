@@ -20,6 +20,7 @@ describe("UsersRepository", () => {
       email: "vinifraga@rocketseat.com",
       admin: false,
     });
+    
     expect(validate(user.id)).toBe(true);
     expect(user.created_at).toBeInstanceOf(Date);
     expect(user.updated_at).toBeInstanceOf(Date);

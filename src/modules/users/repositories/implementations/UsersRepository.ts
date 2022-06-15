@@ -19,15 +19,20 @@ class UsersRepository implements IUsersRepository {
     return UsersRepository.INSTANCE;
   }
 
-  create({ name, email }: ICreateUserDTO): void {
+  create({ name, email }: ICreateUserDTO): User {
     const user = new User()
 
     Object.assign(user, {
       name,
-      email 
+      admin: false, 
+      email,
+      created_at: new Date(),
+      updated_at: new Date() 
     })
 
     this.users.push(user)
+
+    return user
   }
 
   findById(id: string): User | undefined {
@@ -42,10 +47,13 @@ class UsersRepository implements IUsersRepository {
     return user
   }
 
-  turnAdmin(receivedUser: User): void {
+  turnAdmin(receivedUser: User): User {
 
     const user = receivedUser
     user.admin = true
+    user.updated_at = new Date()
+
+    return user
   }
 
   list(): User[] {

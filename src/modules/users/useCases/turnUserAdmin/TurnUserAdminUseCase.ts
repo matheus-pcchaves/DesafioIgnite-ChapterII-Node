@@ -15,11 +15,10 @@ class TurnUserAdminUseCase {
       const user = this.usersRepository.findById(user_id)
 
       if(!user){
-        throw new Error('User does not exists')
+        throw new Error('User not found')
       }
 
-      user.admin = true
-      user.updated_at = new Date()
+      this.usersRepository.turnAdmin(user)
 
       return user
     }

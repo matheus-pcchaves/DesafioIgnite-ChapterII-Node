@@ -33,15 +33,15 @@ class UsersRepository implements IUsersRepository {
   }
 
   findById(id: string): User | undefined {
-    const user = this.users.find(user => user.id === id)
+    const userId = this.users.find(user => user.id === id)
 
-    return user
+    return userId
   }
 
   findByEmail(email: string): User | undefined {
-    const user = this.users.find(user => user.email === email)
+    const userEmail = this.users.find(user => user.email === email)
 
-    return user
+    return userEmail
   }
 
   turnAdmin(receivedUser: User): User {

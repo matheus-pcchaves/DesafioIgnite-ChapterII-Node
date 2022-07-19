@@ -13,13 +13,13 @@ class ListAllUsersUseCase {
 
     execute({user_id}: IUsersRequest): User[] {
 
-      const userId = this.usersRepository.findById(user_id)
+      const user = this.usersRepository.findById(user_id)
 
-      if(!userId.id){
+      if(!user){
         throw new Error('User does not exists')
       }
 
-      if(!userId.admin){
+      if(!user.admin){
         throw new Error('Unauthorized')
       }
       
